@@ -52,6 +52,9 @@ public class InterfaceBDA extends javax.swing.JFrame {
         btnImporterAutorisation = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableAutorisations = new javax.swing.JTable();
+        frameHistorique = new javax.swing.JFrame();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tableHistorique = new javax.swing.JTable();
         btnCreerListeAuto = new javax.swing.JButton();
         btnOuvrirListeAuto = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -64,6 +67,7 @@ public class InterfaceBDA extends javax.swing.JFrame {
 
         btnEnregistrerAutorisations.setText("Enregistrer");
         btnEnregistrerAutorisations.setMinimumSize(new java.awt.Dimension(105, 37));
+        btnEnregistrerAutorisations.setPreferredSize(new java.awt.Dimension(105, 37));
         btnEnregistrerAutorisations.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEnregistrerAutorisationsActionPerformed(evt);
@@ -72,6 +76,7 @@ public class InterfaceBDA extends javax.swing.JFrame {
 
         btnAjouterAutorisation.setText("Ajouter");
         btnAjouterAutorisation.setMinimumSize(new java.awt.Dimension(105, 37));
+        btnAjouterAutorisation.setPreferredSize(new java.awt.Dimension(105, 37));
         btnAjouterAutorisation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAjouterAutorisationActionPerformed(evt);
@@ -80,6 +85,7 @@ public class InterfaceBDA extends javax.swing.JFrame {
 
         btnSupprimerAutorisation.setText("Supprimer");
         btnSupprimerAutorisation.setMinimumSize(new java.awt.Dimension(105, 37));
+        btnSupprimerAutorisation.setPreferredSize(new java.awt.Dimension(105, 37));
         btnSupprimerAutorisation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSupprimerAutorisationActionPerformed(evt);
@@ -88,6 +94,7 @@ public class InterfaceBDA extends javax.swing.JFrame {
 
         btnImporterAutorisation.setText("Importer");
         btnImporterAutorisation.setMinimumSize(new java.awt.Dimension(105, 37));
+        btnImporterAutorisation.setPreferredSize(new java.awt.Dimension(105, 37));
         btnImporterAutorisation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnImporterAutorisationActionPerformed(evt);
@@ -125,7 +132,7 @@ public class InterfaceBDA extends javax.swing.JFrame {
                     .addComponent(btnEnregistrerAutorisations, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSupprimerAutorisation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnImporterAutorisation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         frameAutorisationsLayout.setVerticalGroup(
             frameAutorisationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,6 +149,53 @@ public class InterfaceBDA extends javax.swing.JFrame {
                         .addComponent(btnImporterAutorisation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(26, Short.MAX_VALUE))
+        );
+
+        frameHistorique.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        frameHistorique.setTitle("Consulter l'historique");
+        frameHistorique.setMinimumSize(new java.awt.Dimension(500, 400));
+
+        tableHistorique.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Heure", "Action", "Détail"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tableHistorique.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(tableHistorique);
+
+        javax.swing.GroupLayout frameHistoriqueLayout = new javax.swing.GroupLayout(frameHistorique.getContentPane());
+        frameHistorique.getContentPane().setLayout(frameHistoriqueLayout);
+        frameHistoriqueLayout.setHorizontalGroup(
+            frameHistoriqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(frameHistoriqueLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(13, Short.MAX_VALUE))
+        );
+        frameHistoriqueLayout.setVerticalGroup(
+            frameHistoriqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(frameHistoriqueLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -269,17 +323,40 @@ public class InterfaceBDA extends javax.swing.JFrame {
 		if (resultat == JFileChooser.APPROVE_OPTION) {
 			String fichier_choisi = choix_fichier.getSelectedFile().getAbsolutePath();
 			try {
-				throw new FileNotFoundException();
+				remplirTableauHistorique(fichier_choisi);
 			} catch (FileNotFoundException ex) {
 			}
+			frameHistorique.setVisible(true);
+			setVisible(false);
 		} else {
 			System.out.println("Aucun fichier choisi");
 		}
     }//GEN-LAST:event_btnOuvrirHistoriqueActionPerformed
 
+	void remplirTableauHistorique(String cheminFichier) throws FileNotFoundException {
+		DefaultTableModel modèle = (DefaultTableModel) tableHistorique.getModel();
+		/* Suppression des données déjà présentes */
+		modèle.setRowCount(0);
+		/* Ajout des données du fichier */
+		File fichierChoisi = new File(cheminFichier);
+		Scanner lecteur = new Scanner(fichierChoisi);
+		String ligneLue;
+		String[] sepChaine;
+		while (lecteur.hasNextLine()) {
+			ligneLue = lecteur.nextLine();
+			sepChaine = ligneLue.split("\t");
+			if (sepChaine.length != 3) {
+				/* N'est pas un fichier d'historiques si pas 3 colonnes*/
+			} else {
+				modèle.addRow(new Object[]{sepChaine[0], sepChaine[1], sepChaine[2]});
+
+			}
+		}
+	}
+	
     private void btnEnregistrerAutorisationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnregistrerAutorisationsActionPerformed
 		JFileChooser choix_fichier = new JFileChooser();
-		int resultat = choix_fichier.showOpenDialog(null);
+		int resultat = choix_fichier.showSaveDialog(null);
 		if (resultat == JFileChooser.APPROVE_OPTION) {
 			String fichier_choisi = choix_fichier.getSelectedFile().getAbsolutePath();
 			DefaultTableModel modèle = (DefaultTableModel) tableAutorisations.getModel();
@@ -375,9 +452,12 @@ public class InterfaceBDA extends javax.swing.JFrame {
     private javax.swing.JButton btnOuvrirListeAuto;
     private javax.swing.JButton btnSupprimerAutorisation;
     private javax.swing.JFrame frameAutorisations;
+    private javax.swing.JFrame frameHistorique;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tableAutorisations;
+    private javax.swing.JTable tableHistorique;
     // End of variables declaration//GEN-END:variables
 }
