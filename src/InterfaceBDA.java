@@ -1,7 +1,5 @@
 
 import java.io.FileNotFoundException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 
 /*
@@ -122,11 +120,11 @@ public class InterfaceBDA extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreerListeAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreerListeAutoActionPerformed
-        // TODO add your handling code here:
+		// TODO add your handling code here:
     }//GEN-LAST:event_btnCreerListeAutoActionPerformed
 
     private void btnImporterListeAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImporterListeAutoActionPerformed
-        JFileChooser choix_fichier = new JFileChooser();
+		JFileChooser choix_fichier = new JFileChooser();
 		int resultat = choix_fichier.showOpenDialog(null);
 		if (resultat == JFileChooser.APPROVE_OPTION) {
 			String fichier_choisi = choix_fichier.getSelectedFile().getAbsolutePath();
@@ -140,7 +138,7 @@ public class InterfaceBDA extends javax.swing.JFrame {
     }//GEN-LAST:event_btnImporterListeAutoActionPerformed
 
     private void btnOuvrirHistoriqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOuvrirHistoriqueActionPerformed
-        JFileChooser choix_fichier = new JFileChooser();
+		JFileChooser choix_fichier = new JFileChooser();
 		int resultat = choix_fichier.showOpenDialog(null);
 		if (resultat == JFileChooser.APPROVE_OPTION) {
 			String fichier_choisi = choix_fichier.getSelectedFile().getAbsolutePath();
