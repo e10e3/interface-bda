@@ -1,3 +1,9 @@
+
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+
 /*
  * Copyright © 2022 emile
  *
@@ -37,21 +43,115 @@ public class InterfaceBDA extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnCreerListeAuto = new javax.swing.JButton();
+        btnImporterListeAuto = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        btnOuvrirHistorique = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Configuration du verrou");
+        setMinimumSize(new java.awt.Dimension(500, 400));
+
+        btnCreerListeAuto.setText("Créer une nouvelle liste");
+        btnCreerListeAuto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreerListeAutoActionPerformed(evt);
+            }
+        });
+
+        btnImporterListeAuto.setText("Utiliser une liste existante");
+        btnImporterListeAuto.setActionCommand("");
+        btnImporterListeAuto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImporterListeAutoActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Cantarell", 0, 18)); // NOI18N
+        jLabel1.setText("Gérer les autorisations");
+
+        jLabel2.setFont(new java.awt.Font("Cantarell", 0, 18)); // NOI18N
+        jLabel2.setText("Consulter l'historique");
+
+        btnOuvrirHistorique.setText("Ouvrir un fichier");
+        btnOuvrirHistorique.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOuvrirHistoriqueActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(104, 104, 104)
+                        .addComponent(btnCreerListeAuto)
+                        .addGap(39, 39, 39)
+                        .addComponent(btnImporterListeAuto))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(95, 95, 95)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(106, 106, 106)
+                        .addComponent(btnOuvrirHistorique)))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCreerListeAuto)
+                    .addComponent(btnImporterListeAuto))
+                .addGap(31, 31, 31)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(btnOuvrirHistorique)
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCreerListeAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreerListeAutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCreerListeAutoActionPerformed
+
+    private void btnImporterListeAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImporterListeAutoActionPerformed
+        JFileChooser choix_fichier = new JFileChooser();
+		int resultat = choix_fichier.showOpenDialog(null);
+		if (resultat == JFileChooser.APPROVE_OPTION) {
+			String fichier_choisi = choix_fichier.getSelectedFile().getAbsolutePath();
+			try {
+				throw new FileNotFoundException();
+			} catch (FileNotFoundException ex) {
+			}
+		} else {
+			System.out.println("Aucun fichier choisi");
+		}
+    }//GEN-LAST:event_btnImporterListeAutoActionPerformed
+
+    private void btnOuvrirHistoriqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOuvrirHistoriqueActionPerformed
+        JFileChooser choix_fichier = new JFileChooser();
+		int resultat = choix_fichier.showOpenDialog(null);
+		if (resultat == JFileChooser.APPROVE_OPTION) {
+			String fichier_choisi = choix_fichier.getSelectedFile().getAbsolutePath();
+			try {
+				throw new FileNotFoundException();
+			} catch (FileNotFoundException ex) {
+			}
+		} else {
+			System.out.println("Aucun fichier choisi");
+		}
+    }//GEN-LAST:event_btnOuvrirHistoriqueActionPerformed
 
 	/**
 	 * @param args the command line arguments
@@ -89,5 +189,10 @@ public class InterfaceBDA extends javax.swing.JFrame {
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCreerListeAuto;
+    private javax.swing.JButton btnImporterListeAuto;
+    private javax.swing.JButton btnOuvrirHistorique;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
