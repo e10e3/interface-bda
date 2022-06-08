@@ -19,8 +19,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -28,6 +30,9 @@ import javax.swing.table.DefaultTableModel;
  * @author Émile
  */
 public class InterfaceBDA extends javax.swing.JFrame {
+
+	boolean identifiantsImportésHistorique = false;
+	ArrayList<String> liste_id_échec;
 
 	/**
 	 * Creates new form InterfaceBDA
@@ -374,12 +379,16 @@ public class InterfaceBDA extends javax.swing.JFrame {
 		if (resultat == JFileChooser.APPROVE_OPTION) {
 			String fichier_choisi = choix_fichier.getSelectedFile().getAbsolutePath();
 			DefaultTableModel modèle = (DefaultTableModel) tableAutorisations.getModel();
-			tableAutorisations.editCellAt(0, 0);
+			/* Validation des modifications en cours */
+			if (tableAutorisations.isEditing()) {
+				tableAutorisations.getCellEditor().stopCellEditing();
+			}
 			try {
 				FileWriter fichier_destination = new FileWriter(fichier_choisi);
 				String ligne_actu;
 				for (int i = 0; i < modèle.getRowCount(); i++) {
-					ligne_actu = modèle.getValueAt(i, 0) + "\t" + modèle.getValueAt(i, 1) + "\n";
+					ligne_actu = modèle.getValueAt(i, 0) + "\t"
+							+ modèle.getValueAt(i, 1) + "\n";
 					System.out.print(ligne_actu);
 					fichier_destination.write(ligne_actu);
 				}
@@ -402,6 +411,8 @@ public class InterfaceBDA extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAjouterAutorisationActionPerformed
 
     private void btnSupprimerAutorisationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupprimerAutorisationActionPerformed
+		/* Fin de l'édition des cellules, évite de modifier une cellule qui
+		n'existe plus */
 		if (tableAutorisations.isEditing()) {
 			tableAutorisations.getCellEditor().stopCellEditing();
 		}
@@ -423,10 +434,63 @@ public class InterfaceBDA extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSupprimerAutorisationActionPerformed
 
     private void btnImporterAutorisationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImporterAutorisationActionPerformed
-		// TODO add your handling code here:
+		if (!identifiantsImportésHistorique) {
+			liste_id_échec = null;
+			JFileChooser choix_fichier = new JFileChooser();
+			int resultat = choix_fichier.showOpenDialog(null);
+			if (resultat == JFileChooser.APPROVE_OPTION) {
+				String fichier_choisi = choix_fichier.getSelectedFile().getAbsolutePath();
+				try {
+					liste_id_échec = listeIdentifiantsDepuisHistorique(fichier_choisi);
+					identifiantsImportésHistorique = true;
+				} catch (FileNotFoundException ex) {
+				}
+			} else {
+				System.out.println("Aucun fichier choisi");
+			}
+		}
+		if (identifiantsImportésHistorique) {
+			String[] tableau_id_échec = liste_id_échec.toArray(String[]::new);
+			/* Affiche un dialogue de choix */
+			String identifiantSelectionne = (String) JOptionPane.showInputDialog(null,
+					"Choisissez un identifiant à importer", "Importation depuis l'historique",
+					JOptionPane.PLAIN_MESSAGE, null,
+					tableau_id_échec, "");
+			liste_id_échec.remove(identifiantSelectionne);
+			if (identifiantSelectionne != null) {
+				System.out.println(identifiantSelectionne);
+				DefaultTableModel modèle = (DefaultTableModel) tableAutorisations.getModel();
+				modèle.addRow(new Object[]{identifiantSelectionne, ""});
+			}
+		}
     }//GEN-LAST:event_btnImporterAutorisationActionPerformed
 
+	ArrayList<String> listeIdentifiantsDepuisHistorique(String cheminFichier) throws FileNotFoundException {
+		ArrayList<String> tableau_id = new ArrayList<>();
+		/* Ajout des données du fichier */
+		File fichierChoisi = new File(cheminFichier);
+		Scanner lecteur = new Scanner(fichierChoisi);
+		String ligneLue;
+		String[] sepChaine;
+		while (lecteur.hasNextLine()) {
+			ligneLue = lecteur.nextLine();
+			sepChaine = ligneLue.split("\t");
+			if (sepChaine.length == 3) {
+				if (sepChaine[1].equalsIgnoreCase("ÉCHEC")) {
+					tableau_id.add(sepChaine[2]);
+				} else {
+					/* Passage à la ligne suivante */
+				}
+			} else {
+				/* N'est pas un fichier d'historiques si pas 3 colonnes*/
+			}
+		}
+		return tableau_id;
+	}
+
     private void frameAutorisationsWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_frameAutorisationsWindowClosed
+		/* Réinitialise le dialogue d'importation des identifiants depuis l'historique */
+		identifiantsImportésHistorique = false;
 		setVisible(true);
     }//GEN-LAST:event_frameAutorisationsWindowClosed
 
