@@ -491,6 +491,12 @@ public class InterfaceBDA extends javax.swing.JFrame {
     private void frameAutorisationsWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_frameAutorisationsWindowClosed
 		/* Réinitialise le dialogue d'importation des identifiants depuis l'historique */
 		identifiantsImportésHistorique = false;
+		int choix_enregistrer = JOptionPane.showInternalConfirmDialog(null,
+				"Voulez-vous enregister ?", "Vous n'avez pas enregistré",
+				JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+		if (choix_enregistrer == JOptionPane.YES_OPTION) {
+			btnEnregistrerAutorisationsActionPerformed(null);
+		}
 		setVisible(true);
     }//GEN-LAST:event_frameAutorisationsWindowClosed
 
