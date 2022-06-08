@@ -34,6 +34,10 @@ public class InterfaceBDA extends javax.swing.JFrame {
 	 */
 	public InterfaceBDA() {
 		initComponents();
+		/* Affichage des fenêtres au centre de l'écran */
+		setLocationRelativeTo(null);
+		frameAutorisations.setLocationRelativeTo(null);
+		frameHistorique.setLocationRelativeTo(null);
 	}
 
 	/**
@@ -64,6 +68,11 @@ public class InterfaceBDA extends javax.swing.JFrame {
         frameAutorisations.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         frameAutorisations.setTitle("Gestion des autorisations");
         frameAutorisations.setMinimumSize(new java.awt.Dimension(600, 400));
+        frameAutorisations.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                frameAutorisationsWindowClosed(evt);
+            }
+        });
 
         btnEnregistrerAutorisations.setText("Enregistrer");
         btnEnregistrerAutorisations.setMinimumSize(new java.awt.Dimension(105, 37));
@@ -154,6 +163,11 @@ public class InterfaceBDA extends javax.swing.JFrame {
         frameHistorique.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         frameHistorique.setTitle("Consulter l'historique");
         frameHistorique.setMinimumSize(new java.awt.Dimension(500, 400));
+        frameHistorique.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                frameHistoriqueWindowClosed(evt);
+            }
+        });
 
         tableHistorique.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -353,7 +367,7 @@ public class InterfaceBDA extends javax.swing.JFrame {
 			}
 		}
 	}
-	
+
     private void btnEnregistrerAutorisationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnregistrerAutorisationsActionPerformed
 		JFileChooser choix_fichier = new JFileChooser();
 		int resultat = choix_fichier.showSaveDialog(null);
@@ -383,17 +397,19 @@ public class InterfaceBDA extends javax.swing.JFrame {
 		DefaultTableModel modèle = (DefaultTableModel) tableAutorisations.getModel();
 		int nombre_lignes = modèle.getRowCount();
 		modèle.setRowCount(nombre_lignes + 1);
-		tableAutorisations.editCellAt(nombre_lignes​, 0);
+		// tableAutorisations.editCellAt(nombre_lignes​, 0);
 		tableAutorisations.requestFocus();
     }//GEN-LAST:event_btnAjouterAutorisationActionPerformed
 
     private void btnSupprimerAutorisationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupprimerAutorisationActionPerformed
+		if (tableAutorisations.isEditing()) {
+			tableAutorisations.getCellEditor().stopCellEditing();
+		}
 		DefaultTableModel modèle = (DefaultTableModel) tableAutorisations.getModel();
 		int ligne_sel = tableAutorisations.getSelectedRow();
 		while (ligne_sel != -1) {
 			if (modèle.getRowCount() > 1) {
-				int modelRow = tableAutorisations.convertRowIndexToModel(ligne_sel);
-				modèle.removeRow(modelRow);
+				modèle.removeRow(ligne_sel);
 				ligne_sel = tableAutorisations.getSelectedRow();
 			} else {
 				modèle.addRow(new Object[]{null, null});
@@ -402,11 +418,21 @@ public class InterfaceBDA extends javax.swing.JFrame {
 				break;
 			}
 		}
+		int ligneMax = modèle.getRowCount() - 1;
+		tableAutorisations.setRowSelectionInterval(ligneMax, ligneMax);
     }//GEN-LAST:event_btnSupprimerAutorisationActionPerformed
 
     private void btnImporterAutorisationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImporterAutorisationActionPerformed
 		// TODO add your handling code here:
     }//GEN-LAST:event_btnImporterAutorisationActionPerformed
+
+    private void frameAutorisationsWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_frameAutorisationsWindowClosed
+		setVisible(true);
+    }//GEN-LAST:event_frameAutorisationsWindowClosed
+
+    private void frameHistoriqueWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_frameHistoriqueWindowClosed
+		setVisible(true);
+    }//GEN-LAST:event_frameHistoriqueWindowClosed
 
 	/**
 	 * @param args the command line arguments
@@ -424,13 +450,7 @@ public class InterfaceBDA extends javax.swing.JFrame {
 					break;
 				}
 			}
-		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(InterfaceBDA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(InterfaceBDA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(InterfaceBDA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
 			java.util.logging.Logger.getLogger(InterfaceBDA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
 		//</editor-fold>
