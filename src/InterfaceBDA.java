@@ -24,6 +24,7 @@ import java.util.Scanner;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import com.formdev.flatlaf.FlatLightLaf;
 
 /**
  *
@@ -146,13 +147,14 @@ public class InterfaceBDA extends javax.swing.JFrame {
                     .addComponent(btnEnregistrerAutorisations, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSupprimerAutorisation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnImporterAutorisation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         frameAutorisationsLayout.setVerticalGroup(
             frameAutorisationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(frameAutorisationsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(frameAutorisationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(frameAutorisationsLayout.createSequentialGroup()
                         .addComponent(btnEnregistrerAutorisations, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -160,14 +162,14 @@ public class InterfaceBDA extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnSupprimerAutorisation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnImporterAutorisation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                        .addComponent(btnImporterAutorisation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 174, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         frameHistorique.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         frameHistorique.setTitle("Consulter l'historique");
-        frameHistorique.setMinimumSize(new java.awt.Dimension(500, 400));
+        frameHistorique.setMinimumSize(new java.awt.Dimension(600, 400));
         frameHistorique.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 frameHistoriqueWindowClosed(evt);
@@ -206,20 +208,20 @@ public class InterfaceBDA extends javax.swing.JFrame {
             frameHistoriqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(frameHistoriqueLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
+                .addContainerGap())
         );
         frameHistoriqueLayout.setVerticalGroup(
             frameHistoriqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(frameHistoriqueLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Configuration du verrou");
-        setMinimumSize(new java.awt.Dimension(500, 400));
+        setMinimumSize(new java.awt.Dimension(600, 400));
 
         btnCreerListeAuto.setText("Créer une nouvelle liste");
         btnCreerListeAuto.addActionListener(new java.awt.event.ActionListener() {
@@ -268,7 +270,7 @@ public class InterfaceBDA extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(106, 106, 106)
                         .addComponent(btnOuvrirHistorique)))
-                .addContainerGap(111, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,7 +285,7 @@ public class InterfaceBDA extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(btnOuvrirHistorique)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
 
         pack();
@@ -383,12 +385,11 @@ public class InterfaceBDA extends javax.swing.JFrame {
 			if (tableAutorisations.isEditing()) {
 				tableAutorisations.getCellEditor().stopCellEditing();
 			}
-			try {
-				FileWriter fichier_destination = new FileWriter(fichier_choisi);
+			try ( FileWriter fichier_destination = new FileWriter(fichier_choisi)) {
 				String ligne_actu;
 				for (int i = 0; i < modèle.getRowCount(); i++) {
 					ligne_actu = modèle.getValueAt(i, 0) + "\t"
-							+ modèle.getValueAt(i, 1) + "\n";
+							+ modèle.getValueAt(i, 1) + "\r\n";
 					System.out.print(ligne_actu);
 					fichier_destination.write(ligne_actu);
 				}
@@ -508,28 +509,18 @@ public class InterfaceBDA extends javax.swing.JFrame {
 	 * @param args the command line arguments
 	 */
 	public static void main(String args[]) {
-		/* Set the Nimbus look and feel */
-		//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-		/* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-		 */
+		/* Utilisation du thème FlatLaf Light */
+		//<editor-fold defaultstate="collapsed" desc="Look and feel setting code">
 		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
-					javax.swing.UIManager.setLookAndFeel(info.getClassName());
-					break;
-				}
-			}
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(InterfaceBDA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			javax.swing.UIManager.setLookAndFeel(new FlatLightLaf());
+		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+			System.err.println("Impossible de charger le thème");
 		}
 		//</editor-fold>
 
 		/* Create and display the form */
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				new InterfaceBDA().setVisible(true);
-			}
+		java.awt.EventQueue.invokeLater(() -> {
+			new InterfaceBDA().setVisible(true);
 		});
 	}
 
