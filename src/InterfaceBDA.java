@@ -25,6 +25,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import com.formdev.flatlaf.FlatLightLaf;
+import java.awt.Font;
 
 /**
  *
@@ -34,9 +35,10 @@ public class InterfaceBDA extends javax.swing.JFrame {
 
 	boolean identifiantsImportésHistorique = false;
 	ArrayList<String> liste_id_échec;
+	boolean autorisationEnregistrées = false;
 
 	/**
-	 * Creates new form InterfaceBDA
+	 * Constructeur
 	 */
 	public InterfaceBDA() {
 		initComponents();
@@ -44,6 +46,13 @@ public class InterfaceBDA extends javax.swing.JFrame {
 		setLocationRelativeTo(null);
 		frameAutorisations.setLocationRelativeTo(null);
 		frameHistorique.setLocationRelativeTo(null);
+		/* Affiche les grilles des tableaux */
+		tableAutorisations.setShowGrid(true);
+		tableHistorique.setShowGrid(true);
+		/* Affiche les en-têtes en gras */
+		Font policeEnteteTableau = tableAutorisations.getTableHeader().getFont().deriveFont(Font.BOLD);
+		tableAutorisations.getTableHeader().setFont(policeEnteteTableau);
+		tableHistorique.getTableHeader().setFont(policeEnteteTableau);
 	}
 
 	/**
@@ -81,8 +90,8 @@ public class InterfaceBDA extends javax.swing.JFrame {
         });
 
         btnEnregistrerAutorisations.setText("Enregistrer");
-        btnEnregistrerAutorisations.setMinimumSize(new java.awt.Dimension(105, 37));
-        btnEnregistrerAutorisations.setPreferredSize(new java.awt.Dimension(105, 37));
+        btnEnregistrerAutorisations.setMinimumSize(new java.awt.Dimension(105, 30));
+        btnEnregistrerAutorisations.setPreferredSize(new java.awt.Dimension(105, 30));
         btnEnregistrerAutorisations.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEnregistrerAutorisationsActionPerformed(evt);
@@ -90,8 +99,8 @@ public class InterfaceBDA extends javax.swing.JFrame {
         });
 
         btnAjouterAutorisation.setText("Ajouter");
-        btnAjouterAutorisation.setMinimumSize(new java.awt.Dimension(105, 37));
-        btnAjouterAutorisation.setPreferredSize(new java.awt.Dimension(105, 37));
+        btnAjouterAutorisation.setMinimumSize(new java.awt.Dimension(105, 30));
+        btnAjouterAutorisation.setPreferredSize(new java.awt.Dimension(105, 30));
         btnAjouterAutorisation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAjouterAutorisationActionPerformed(evt);
@@ -99,8 +108,8 @@ public class InterfaceBDA extends javax.swing.JFrame {
         });
 
         btnSupprimerAutorisation.setText("Supprimer");
-        btnSupprimerAutorisation.setMinimumSize(new java.awt.Dimension(105, 37));
-        btnSupprimerAutorisation.setPreferredSize(new java.awt.Dimension(105, 37));
+        btnSupprimerAutorisation.setMinimumSize(new java.awt.Dimension(105, 30));
+        btnSupprimerAutorisation.setPreferredSize(new java.awt.Dimension(105, 30));
         btnSupprimerAutorisation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSupprimerAutorisationActionPerformed(evt);
@@ -108,8 +117,8 @@ public class InterfaceBDA extends javax.swing.JFrame {
         });
 
         btnImporterAutorisation.setText("Importer");
-        btnImporterAutorisation.setMinimumSize(new java.awt.Dimension(105, 37));
-        btnImporterAutorisation.setPreferredSize(new java.awt.Dimension(105, 37));
+        btnImporterAutorisation.setMinimumSize(new java.awt.Dimension(105, 30));
+        btnImporterAutorisation.setPreferredSize(new java.awt.Dimension(105, 30));
         btnImporterAutorisation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnImporterAutorisationActionPerformed(evt);
@@ -163,7 +172,7 @@ public class InterfaceBDA extends javax.swing.JFrame {
                         .addComponent(btnSupprimerAutorisation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnImporterAutorisation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 174, Short.MAX_VALUE)))
+                        .addGap(0, 202, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -224,6 +233,8 @@ public class InterfaceBDA extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(600, 400));
 
         btnCreerListeAuto.setText("Créer une nouvelle liste");
+        btnCreerListeAuto.setMinimumSize(new java.awt.Dimension(182, 30));
+        btnCreerListeAuto.setPreferredSize(new java.awt.Dimension(200, 30));
         btnCreerListeAuto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreerListeAutoActionPerformed(evt);
@@ -232,6 +243,8 @@ public class InterfaceBDA extends javax.swing.JFrame {
 
         btnOuvrirListeAuto.setText("Utiliser une liste existante");
         btnOuvrirListeAuto.setActionCommand("");
+        btnOuvrirListeAuto.setMinimumSize(new java.awt.Dimension(210, 30));
+        btnOuvrirListeAuto.setPreferredSize(new java.awt.Dimension(210, 30));
         btnOuvrirListeAuto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnOuvrirListeAutoActionPerformed(evt);
@@ -245,6 +258,8 @@ public class InterfaceBDA extends javax.swing.JFrame {
         jLabel2.setText("Consulter l'historique");
 
         btnOuvrirHistorique.setText("Ouvrir un fichier");
+        btnOuvrirHistorique.setMinimumSize(new java.awt.Dimension(134, 30));
+        btnOuvrirHistorique.setPreferredSize(new java.awt.Dimension(150, 30));
         btnOuvrirHistorique.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnOuvrirHistoriqueActionPerformed(evt);
@@ -259,33 +274,33 @@ public class InterfaceBDA extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(104, 104, 104)
-                        .addComponent(btnCreerListeAuto)
-                        .addGap(39, 39, 39)
-                        .addComponent(btnOuvrirListeAuto))
+                        .addComponent(btnCreerListeAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnOuvrirListeAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(95, 95, 95)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel1)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(106, 106, 106)
-                        .addComponent(btnOuvrirHistorique)))
-                .addContainerGap(78, Short.MAX_VALUE))
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(btnOuvrirHistorique, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(69, 69, 69)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCreerListeAuto)
-                    .addComponent(btnOuvrirListeAuto))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnOuvrirListeAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCreerListeAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(btnOuvrirHistorique)
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnOuvrirHistorique, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(172, Short.MAX_VALUE))
         );
 
         pack();
@@ -307,7 +322,7 @@ public class InterfaceBDA extends javax.swing.JFrame {
 		if (resultat == JFileChooser.APPROVE_OPTION) {
 			String fichier_choisi = choix_fichier.getSelectedFile().getAbsolutePath();
 			try {
-				préremplirTableauAutorisations(fichier_choisi);
+				remplirTableauAutorisations(fichier_choisi);
 			} catch (FileNotFoundException ex) {
 			}
 			frameAutorisations.setVisible(true);
@@ -317,7 +332,7 @@ public class InterfaceBDA extends javax.swing.JFrame {
 		}
     }//GEN-LAST:event_btnOuvrirListeAutoActionPerformed
 
-	void préremplirTableauAutorisations(String cheminFichier) throws FileNotFoundException {
+	void remplirTableauAutorisations(String cheminFichier) throws FileNotFoundException {
 		DefaultTableModel modèle = (DefaultTableModel) tableAutorisations.getModel();
 		/* Suppression des données déjà présentes */
 		modèle.setRowCount(0);
@@ -366,11 +381,10 @@ public class InterfaceBDA extends javax.swing.JFrame {
 		while (lecteur.hasNextLine()) {
 			ligneLue = lecteur.nextLine();
 			sepChaine = ligneLue.split("\t");
-			if (sepChaine.length != 3) {
-				/* N'est pas un fichier d'historiques si pas 3 colonnes*/
-			} else {
+			if (sepChaine.length == 3) {
 				modèle.addRow(new Object[]{sepChaine[0], sepChaine[1], sepChaine[2]});
-
+			} else {
+				/* N'est pas un fichier d'historiques si pas 3 colonnes*/
 			}
 		}
 	}
@@ -388,16 +402,29 @@ public class InterfaceBDA extends javax.swing.JFrame {
 			try ( FileWriter fichier_destination = new FileWriter(fichier_choisi)) {
 				String ligne_actu;
 				for (int i = 0; i < modèle.getRowCount(); i++) {
-					ligne_actu = modèle.getValueAt(i, 0) + "\t"
-							+ modèle.getValueAt(i, 1) + "\r\n";
-					System.out.print(ligne_actu);
-					fichier_destination.write(ligne_actu);
+					String identifiantLigne = (String) tableAutorisations.getValueAt(i, 0);
+					if (identifiantLigne == null) {
+						/* Le pointeur nul est remplacé par une chaîne vide */
+						identifiantLigne = "";
+					}
+					identifiantLigne = identifiantLigne.trim();
+					String nomLigne = (String) tableAutorisations.getValueAt(i, 1);
+					if (nomLigne == null) {
+						nomLigne = "";
+					}
+					nomLigne = nomLigne.trim();
+					if (!(identifiantLigne.isBlank() && nomLigne.isBlank())) {
+						/* Si la ligne n'est pas entièrement vide */
+						ligne_actu = identifiantLigne + "\t" + nomLigne + "\r\n";
+						System.out.print(ligne_actu);
+						fichier_destination.write(ligne_actu);
+					}
 				}
 				fichier_destination.close();
+				autorisationEnregistrées = true;
 			} catch (IOException ex) {
+				System.err.println("Impossible d'ouvrir le fichier choisi en écriture.");
 			}
-			frameAutorisations.dispose();
-			setVisible(true);
 		} else {
 			System.out.println("Aucun fichier choisi");
 		}
@@ -477,13 +504,16 @@ public class InterfaceBDA extends javax.swing.JFrame {
 			ligneLue = lecteur.nextLine();
 			sepChaine = ligneLue.split("\t");
 			if (sepChaine.length == 3) {
+				/* Les fichiers d'historique ont exactement trois colonnes */
 				if (sepChaine[1].equalsIgnoreCase("ÉCHEC")) {
-					tableau_id.add(sepChaine[2]);
-				} else {
-					/* Passage à la ligne suivante */
+					/* Seuls les évènements marqués comme 'ÉCHEC' nous intéressent ici */
+					if (!tableau_id.contains(sepChaine[2])) {
+						/* Si le tableau ne contient pas déjà l'identifiant (pas de doublons) */
+						tableau_id.add(sepChaine[2]);
+					}
 				}
 			} else {
-				/* N'est pas un fichier d'historiques si pas 3 colonnes*/
+				/* N'est pas un fichier d'historiques si pas 3 colonnes */
 			}
 		}
 		return tableau_id;
@@ -492,12 +522,16 @@ public class InterfaceBDA extends javax.swing.JFrame {
     private void frameAutorisationsWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_frameAutorisationsWindowClosed
 		/* Réinitialise le dialogue d'importation des identifiants depuis l'historique */
 		identifiantsImportésHistorique = false;
-		int choix_enregistrer = JOptionPane.showInternalConfirmDialog(null,
-				"Voulez-vous enregister ?", "Vous n'avez pas enregistré",
-				JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
-		if (choix_enregistrer == JOptionPane.YES_OPTION) {
-			btnEnregistrerAutorisationsActionPerformed(null);
+		if (!autorisationEnregistrées) {
+			int choix_enregistrer = JOptionPane.showInternalConfirmDialog(null,
+					"Voulez-vous enregister ?", "Vous n'avez pas enregistré",
+					JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+			if (choix_enregistrer == JOptionPane.YES_OPTION) {
+				btnEnregistrerAutorisationsActionPerformed(null);
+			}
 		}
+		/* Réinitialise l'état d'enregistrement du fichier une fois fermé */
+		autorisationEnregistrées = false;
 		setVisible(true);
     }//GEN-LAST:event_frameAutorisationsWindowClosed
 
