@@ -330,18 +330,28 @@ public class InterfaceBDA extends javax.swing.JFrame {
 		int resultat = choix_fichier.showOpenDialog(null);
 		if (resultat == JFileChooser.APPROVE_OPTION) {
 			String fichier_choisi = choix_fichier.getSelectedFile().getAbsolutePath();
+			boolean succes = false;
 			try {
-				remplirTableauAutorisations(fichier_choisi);
+				succes = remplirTableauAutorisations(fichier_choisi);
 			} catch (FileNotFoundException ex) {
+				JOptionPane.showMessageDialog(null,
+						"Impossible d'ouvrir le ficher sélectionné.",
+						"Erreur", JOptionPane.ERROR_MESSAGE);
 			}
-			frameAutorisations.setVisible(true);
-			setVisible(false);
+			if (succes) {
+				frameAutorisations.setVisible(true);
+				setVisible(false);
+			} else {
+				JOptionPane.showMessageDialog(null,
+						"Ce fichier ne semble pas être un fichier d'autorisations.",
+						"Erreur", JOptionPane.ERROR_MESSAGE);
+			}
 		} else {
-			System.out.println("Aucun fichier choisi");
+			System.err.println("Aucun fichier choisi");
 		}
     }//GEN-LAST:event_btnOuvrirListeAutoActionPerformed
 
-	void remplirTableauAutorisations(String cheminFichier) throws FileNotFoundException {
+	boolean remplirTableauAutorisations(String cheminFichier) throws FileNotFoundException {
 		DefaultTableModel modèle = (DefaultTableModel) tableAutorisations.getModel();
 		/* Suppression des données déjà présentes */
 		modèle.setRowCount(0);
@@ -353,13 +363,14 @@ public class InterfaceBDA extends javax.swing.JFrame {
 		while (lecteur.hasNextLine()) {
 			ligneLue = lecteur.nextLine();
 			sepChaine = ligneLue.split("\t");
-			if (sepChaine.length != 2) {
-				/* N'est pas un fichier d'autorisations si pas 2 colonnes*/
-			} else {
+			if (sepChaine.length == 2) {
 				modèle.addRow(new Object[]{sepChaine[0], sepChaine[1]});
-
+			} else {
+				/* N'est pas un fichier d'autorisations si pas 2 colonnes*/
+				return false;
 			}
 		}
+		return true;
 	}
 
     private void btnOuvrirHistoriqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOuvrirHistoriqueActionPerformed
@@ -367,18 +378,28 @@ public class InterfaceBDA extends javax.swing.JFrame {
 		int resultat = choix_fichier.showOpenDialog(null);
 		if (resultat == JFileChooser.APPROVE_OPTION) {
 			String fichier_choisi = choix_fichier.getSelectedFile().getAbsolutePath();
+			boolean succes = false;
 			try {
-				remplirTableauHistorique(fichier_choisi);
+				succes = remplirTableauHistorique(fichier_choisi);
 			} catch (FileNotFoundException ex) {
+				JOptionPane.showMessageDialog(null,
+						"Impossible d'ouvrir le fichier sélectionné.",
+						"Erreur", JOptionPane.ERROR_MESSAGE);
 			}
-			frameHistorique.setVisible(true);
-			setVisible(false);
+			if (succes) {
+				frameHistorique.setVisible(true);
+				setVisible(false);
+			} else {
+				JOptionPane.showMessageDialog(null,
+						"Ce fichier ne semble pas être un fichier d'historique.",
+						"Erreur", JOptionPane.ERROR_MESSAGE);
+			}
 		} else {
-			System.out.println("Aucun fichier choisi");
+			System.err.println("Aucun fichier choisi");
 		}
     }//GEN-LAST:event_btnOuvrirHistoriqueActionPerformed
 
-	void remplirTableauHistorique(String cheminFichier) throws FileNotFoundException {
+	boolean remplirTableauHistorique(String cheminFichier) throws FileNotFoundException {
 		DefaultTableModel modèle = (DefaultTableModel) tableHistorique.getModel();
 		/* Suppression des données déjà présentes */
 		modèle.setRowCount(0);
@@ -393,9 +414,12 @@ public class InterfaceBDA extends javax.swing.JFrame {
 			if (sepChaine.length == 3) {
 				modèle.addRow(new Object[]{sepChaine[0], sepChaine[1], sepChaine[2]});
 			} else {
-				/* N'est pas un fichier d'historiques si pas 3 colonnes*/
+				/* Il n'y a pas trois colonnes, ce n'est pas un ficher d'historique */
+				return false;
 			}
 		}
+		/* Tout s'est bien passé */
+		return true;
 	}
 
     private void btnEnregistrerAutorisationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnregistrerAutorisationsActionPerformed
@@ -432,7 +456,9 @@ public class InterfaceBDA extends javax.swing.JFrame {
 				fichier_destination.close();
 				autorisationEnregistrées = true;
 			} catch (IOException ex) {
-				System.err.println("Impossible d'ouvrir le fichier choisi en écriture.");
+				JOptionPane.showMessageDialog(null,
+						"Impossible d'ouvrir le fichier choisi en écriture.",
+						"Erreur", JOptionPane.ERROR_MESSAGE);
 			}
 		} else {
 			System.out.println("Aucun fichier choisi");
@@ -479,11 +505,16 @@ public class InterfaceBDA extends javax.swing.JFrame {
 				String fichier_choisi = choix_fichier.getSelectedFile().getAbsolutePath();
 				try {
 					liste_id_échec = listeIdentifiantsDepuisHistorique(fichier_choisi);
-					identifiantsImportésHistorique = true;
+					if (liste_id_échec != null) {
+						identifiantsImportésHistorique = true;
+					}
 				} catch (FileNotFoundException ex) {
+					JOptionPane.showMessageDialog(null,
+							"Impossible d'ouvrir le ficher sélectionné.",
+							"Erreur", JOptionPane.ERROR_MESSAGE);
 				}
 			} else {
-				System.out.println("Aucun fichier choisi");
+				System.err.println("Aucun fichier choisi");
 			}
 		}
 		if (identifiantsImportésHistorique) {
@@ -522,7 +553,11 @@ public class InterfaceBDA extends javax.swing.JFrame {
 					}
 				}
 			} else {
-				/* N'est pas un fichier d'historiques si pas 3 colonnes */
+				/* Il n'y a pas trois colonnes, ce n'est pas un ficher d'historique */
+				JOptionPane.showMessageDialog(null,
+						"Ce fichier ne semble pas être un fichier d'historique.",
+						"Erreur", JOptionPane.ERROR_MESSAGE);
+				return null;
 			}
 		}
 		return tableau_id;
