@@ -57,6 +57,7 @@
         <Component class="javax.swing.JButton" name="btnEnregistrerAutorisations">
           <Properties>
             <Property name="text" type="java.lang.String" value="Enregistrer"/>
+            <Property name="toolTipText" type="java.lang.String" value="Enregistrer les autorisations dans un fichier"/>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[105, 30]"/>
             </Property>
@@ -71,6 +72,7 @@
         <Component class="javax.swing.JButton" name="btnAjouterAutorisation">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ajouter"/>
+            <Property name="toolTipText" type="java.lang.String" value="Ajouter une ligne d&apos;autorisation"/>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[105, 30]"/>
             </Property>
@@ -85,6 +87,7 @@
         <Component class="javax.swing.JButton" name="btnSupprimerAutorisation">
           <Properties>
             <Property name="text" type="java.lang.String" value="Supprimer"/>
+            <Property name="toolTipText" type="java.lang.String" value="Supprimer une ligne d&apos;autorisation"/>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[105, 30]"/>
             </Property>
@@ -99,6 +102,7 @@
         <Component class="javax.swing.JButton" name="btnImporterAutorisation">
           <Properties>
             <Property name="text" type="java.lang.String" value="Importer"/>
+            <Property name="toolTipText" type="java.lang.String" value="Importer des autorisations depuis un historique"/>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[105, 30]"/>
             </Property>
@@ -143,6 +147,9 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <AccessibilityProperties>
+                <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Tableau des autorisations"/>
+              </AccessibilityProperties>
             </Component>
           </SubComponents>
         </Container>
@@ -220,6 +227,9 @@
                   <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <AccessibilityProperties>
+                <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Tableau de l&apos;historique"/>
+              </AccessibilityProperties>
             </Component>
           </SubComponents>
         </Container>
@@ -299,6 +309,7 @@
     <Component class="javax.swing.JButton" name="btnCreerListeAuto">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cr&#xe9;er une nouvelle liste"/>
+        <Property name="toolTipText" type="java.lang.String" value="Commencer une liste d&apos;autorisations &#xe0; partir de rien"/>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[182, 30]"/>
         </Property>
@@ -313,6 +324,7 @@
     <Component class="javax.swing.JButton" name="btnOuvrirListeAuto">
       <Properties>
         <Property name="text" type="java.lang.String" value="Utiliser une liste existante"/>
+        <Property name="toolTipText" type="java.lang.String" value="Ouvrir une liste d&apos;autorisation et la modifier"/>
         <Property name="actionCommand" type="java.lang.String" value=""/>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[210, 30]"/>
@@ -344,6 +356,7 @@
     <Component class="javax.swing.JButton" name="btnOuvrirHistorique">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ouvrir un fichier"/>
+        <Property name="toolTipText" type="java.lang.String" value="Ouvrir un fichier d&apos;historique et le consulter"/>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[134, 30]"/>
         </Property>

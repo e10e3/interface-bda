@@ -90,6 +90,7 @@ public class InterfaceBDA extends javax.swing.JFrame {
         });
 
         btnEnregistrerAutorisations.setText("Enregistrer");
+        btnEnregistrerAutorisations.setToolTipText("Enregistrer les autorisations dans un fichier");
         btnEnregistrerAutorisations.setMinimumSize(new java.awt.Dimension(105, 30));
         btnEnregistrerAutorisations.setPreferredSize(new java.awt.Dimension(105, 30));
         btnEnregistrerAutorisations.addActionListener(new java.awt.event.ActionListener() {
@@ -99,6 +100,7 @@ public class InterfaceBDA extends javax.swing.JFrame {
         });
 
         btnAjouterAutorisation.setText("Ajouter");
+        btnAjouterAutorisation.setToolTipText("Ajouter une ligne d'autorisation");
         btnAjouterAutorisation.setMinimumSize(new java.awt.Dimension(105, 30));
         btnAjouterAutorisation.setPreferredSize(new java.awt.Dimension(105, 30));
         btnAjouterAutorisation.addActionListener(new java.awt.event.ActionListener() {
@@ -108,6 +110,7 @@ public class InterfaceBDA extends javax.swing.JFrame {
         });
 
         btnSupprimerAutorisation.setText("Supprimer");
+        btnSupprimerAutorisation.setToolTipText("Supprimer une ligne d'autorisation");
         btnSupprimerAutorisation.setMinimumSize(new java.awt.Dimension(105, 30));
         btnSupprimerAutorisation.setPreferredSize(new java.awt.Dimension(105, 30));
         btnSupprimerAutorisation.addActionListener(new java.awt.event.ActionListener() {
@@ -117,6 +120,7 @@ public class InterfaceBDA extends javax.swing.JFrame {
         });
 
         btnImporterAutorisation.setText("Importer");
+        btnImporterAutorisation.setToolTipText("Importer des autorisations depuis un historique");
         btnImporterAutorisation.setMinimumSize(new java.awt.Dimension(105, 30));
         btnImporterAutorisation.setPreferredSize(new java.awt.Dimension(105, 30));
         btnImporterAutorisation.addActionListener(new java.awt.event.ActionListener() {
@@ -142,6 +146,7 @@ public class InterfaceBDA extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tableAutorisations);
+        tableAutorisations.getAccessibleContext().setAccessibleName("Tableau des autorisations");
 
         javax.swing.GroupLayout frameAutorisationsLayout = new javax.swing.GroupLayout(frameAutorisations.getContentPane());
         frameAutorisations.getContentPane().setLayout(frameAutorisationsLayout);
@@ -210,6 +215,7 @@ public class InterfaceBDA extends javax.swing.JFrame {
         });
         tableHistorique.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tableHistorique);
+        tableHistorique.getAccessibleContext().setAccessibleName("Tableau de l'historique");
 
         javax.swing.GroupLayout frameHistoriqueLayout = new javax.swing.GroupLayout(frameHistorique.getContentPane());
         frameHistorique.getContentPane().setLayout(frameHistoriqueLayout);
@@ -233,6 +239,7 @@ public class InterfaceBDA extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(600, 400));
 
         btnCreerListeAuto.setText("Créer une nouvelle liste");
+        btnCreerListeAuto.setToolTipText("Commencer une liste d'autorisations à partir de rien");
         btnCreerListeAuto.setMinimumSize(new java.awt.Dimension(182, 30));
         btnCreerListeAuto.setPreferredSize(new java.awt.Dimension(200, 30));
         btnCreerListeAuto.addActionListener(new java.awt.event.ActionListener() {
@@ -242,6 +249,7 @@ public class InterfaceBDA extends javax.swing.JFrame {
         });
 
         btnOuvrirListeAuto.setText("Utiliser une liste existante");
+        btnOuvrirListeAuto.setToolTipText("Ouvrir une liste d'autorisation et la modifier");
         btnOuvrirListeAuto.setActionCommand("");
         btnOuvrirListeAuto.setMinimumSize(new java.awt.Dimension(210, 30));
         btnOuvrirListeAuto.setPreferredSize(new java.awt.Dimension(210, 30));
@@ -258,6 +266,7 @@ public class InterfaceBDA extends javax.swing.JFrame {
         jLabel2.setText("Consulter l'historique");
 
         btnOuvrirHistorique.setText("Ouvrir un fichier");
+        btnOuvrirHistorique.setToolTipText("Ouvrir un fichier d'historique et le consulter");
         btnOuvrirHistorique.setMinimumSize(new java.awt.Dimension(134, 30));
         btnOuvrirHistorique.setPreferredSize(new java.awt.Dimension(150, 30));
         btnOuvrirHistorique.addActionListener(new java.awt.event.ActionListener() {
