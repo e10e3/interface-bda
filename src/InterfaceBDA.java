@@ -315,6 +315,12 @@ public class InterfaceBDA extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+	/**
+	 * Vide le tableau des autorisations puis crée une nouvelle ligne vide.
+	 * Enfin, affiche la fenêtre des autorisations et cache l'accueil.
+	 *
+	 * @param evt non utilisé
+	 */
     private void btnCreerListeAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreerListeAutoActionPerformed
 		DefaultTableModel modèle = (DefaultTableModel) tableAutorisations.getModel();
 		/* Suppression des données déjà présentes */
@@ -324,7 +330,17 @@ public class InterfaceBDA extends javax.swing.JFrame {
 		frameAutorisations.setVisible(true);
 		setVisible(false);
     }//GEN-LAST:event_btnCreerListeAutoActionPerformed
-
+	
+	/**
+	 * Affiche un sélecteur de fichier, puis appelle
+	 * `remplirTableauAutorisations` pour remplir le tableau des autorisations
+	 * avec le contenu du fichier sélectionné. Si le fichier choisi est bien un
+	 * fichier d'autorisations (<em>id est</em> la méthode auxiliaire renvoie
+	 * « Vrai »), finit en affichant la fenêtre des autorisations et en cachant
+	 * l’accueil.
+	 *
+	 * @param evt non utilisé
+	 */
     private void btnOuvrirListeAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOuvrirListeAutoActionPerformed
 		JFileChooser choix_fichier = new JFileChooser();
 		int resultat = choix_fichier.showOpenDialog(null);
@@ -351,6 +367,18 @@ public class InterfaceBDA extends javax.swing.JFrame {
 		}
     }//GEN-LAST:event_btnOuvrirListeAutoActionPerformed
 
+	/**
+	 * Vide le tableau des autorisations, puis le remplit avec le contenu du
+	 * fichier : ligne par ligne, les colonnes séparées par une tabulation sont
+	 * extraites. Ces colonnes se retrouvent ensuite dans le tableau. Si toutes
+	 * les lignes ont bien exactement deux colonnes, le fichier est correct ;
+	 * sinon la méthode échoue et renvoit « Faux ».
+	 *
+	 * @param cheminFichier le chemin du fichier à ouvrir
+	 * @return succès de l'opération : le fichier a bien les caractéristiques
+	 * d'un fichier d'autorisations
+	 * @throws FileNotFoundException Si le fichier sélectionné n'est pas trouvé
+	 */
 	boolean remplirTableauAutorisations(String cheminFichier) throws FileNotFoundException {
 		DefaultTableModel modèle = (DefaultTableModel) tableAutorisations.getModel();
 		/* Suppression des données déjà présentes */
@@ -373,6 +401,15 @@ public class InterfaceBDA extends javax.swing.JFrame {
 		return true;
 	}
 
+	/**
+	 * Affiche un sélecteur de fichier, puis appelle `remplirTableauHistorique`
+	 * pour remplir le tableau de l'historique avec le contenu du fichier
+	 * sélectionné. Si le fichier choisi est bien un fichier d'historique (<em>id
+	 * est</em> la méthode auxiliaire renvoie « Vrai »), finit en affichant la
+	 * fenêtre de l'historique et en cachant l’accueil.
+	 *
+	 * @param evt non utilisé
+	 */
     private void btnOuvrirHistoriqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOuvrirHistoriqueActionPerformed
 		JFileChooser choix_fichier = new JFileChooser();
 		int resultat = choix_fichier.showOpenDialog(null);
@@ -399,6 +436,18 @@ public class InterfaceBDA extends javax.swing.JFrame {
 		}
     }//GEN-LAST:event_btnOuvrirHistoriqueActionPerformed
 
+	/**
+	 * Vide le tableau de l'historique, puis le remplit avec le contenu du
+	 * fichier : ligne par ligne, les colonnes séparées par une tabulation sont
+	 * extraites. Ces colonnes se retrouvent ensuite dans le tableau. Si toutes
+	 * les lignes ont bien exactement trois colonnes, le fichier est correct ;
+	 * sinon la méthode échoue et renvoit « Faux ».
+	 *
+	 * @param cheminFichier le chemin du fichier à ouvrir
+	 * @return succès de l'opération : le fichier a bien les caractéristiques
+	 * d'un fichier d'historique
+	 * @throws FileNotFoundException Si le fichier sélectionnée n'est pas trouvé
+	 */
 	boolean remplirTableauHistorique(String cheminFichier) throws FileNotFoundException {
 		DefaultTableModel modèle = (DefaultTableModel) tableHistorique.getModel();
 		/* Suppression des données déjà présentes */
@@ -422,6 +471,15 @@ public class InterfaceBDA extends javax.swing.JFrame {
 		return true;
 	}
 
+	/**
+	 * Affiche un sélecteur de fichier pour l'enregistrement. Une fois fait,
+	 * valide les modifications en cours et écrit les différentes lignes du
+	 * tableau dans le fichier sélectionné selon la spécification du format. Les
+	 * lignes entièrement vides sont ignorées. Enfin, change le témoin
+	 * d'enregistrement `autorisationEnregistrées` à « Vrai ».
+	 *
+	 * @param evt non utilisé
+	 */
     private void btnEnregistrerAutorisationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnregistrerAutorisationsActionPerformed
 		JFileChooser choix_fichier = new JFileChooser();
 		int resultat = choix_fichier.showSaveDialog(null);
@@ -465,6 +523,12 @@ public class InterfaceBDA extends javax.swing.JFrame {
 		}
     }//GEN-LAST:event_btnEnregistrerAutorisationsActionPerformed
 
+	/**
+	 * Ajoute une ligne au tableau des autorisations et rend ce même tableau
+	 * actif.
+	 *
+	 * @param evt non utilisé
+	 */
     private void btnAjouterAutorisationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAjouterAutorisationActionPerformed
 		DefaultTableModel modèle = (DefaultTableModel) tableAutorisations.getModel();
 		int nombre_lignes = modèle.getRowCount();
@@ -473,10 +537,18 @@ public class InterfaceBDA extends javax.swing.JFrame {
 		tableAutorisations.requestFocus();
     }//GEN-LAST:event_btnAjouterAutorisationActionPerformed
 
+	/**
+	 * Valide les modifications en cours pour éviter de modifier une cellule
+	 * supprimée puis supprime une par une toutes les lignes sélectionnées. Si
+	 * le tableau se retrouverait sans lignes, une ligne vide est insérée.
+	 * Enfin, la dernière ligne est sélectionnée.
+	 *
+	 * @param evt non utilisé
+	 */
     private void btnSupprimerAutorisationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupprimerAutorisationActionPerformed
-		/* Fin de l'édition des cellules, évite de modifier une cellule qui
-		n'existe plus */
 		if (tableAutorisations.isEditing()) {
+			/* Fin de l'édition des cellules, évite de modifier une cellule qui
+			n'existe plus */
 			tableAutorisations.getCellEditor().stopCellEditing();
 		}
 		DefaultTableModel modèle = (DefaultTableModel) tableAutorisations.getModel();
@@ -486,6 +558,7 @@ public class InterfaceBDA extends javax.swing.JFrame {
 				modèle.removeRow(ligne_sel);
 				ligne_sel = tableAutorisations.getSelectedRow();
 			} else {
+				/* Ajoute une ligne vide pour ne pas avoir de tableau vide */
 				modèle.addRow(new Object[]{null, null});
 				int modelRow = tableAutorisations.convertRowIndexToModel(0);
 				modèle.removeRow(modelRow);
@@ -496,6 +569,20 @@ public class InterfaceBDA extends javax.swing.JFrame {
 		tableAutorisations.setRowSelectionInterval(ligneMax, ligneMax);
     }//GEN-LAST:event_btnSupprimerAutorisationActionPerformed
 
+	/**
+	 * Affiche un sélecteur de fichiers pour sélectionner un fichier
+	 * d'historique et appelle `listeIdentifiantsDepuisHistorique` pour
+	 * récupérer la liste des identifiants non reconnus. Si les identifiants ont
+	 * bien été récupérés (le tableau renvoyé n'est pas nul, <em>id est</em> le fichier
+	 * sélectionné est bien un fichier d'historique), affiche un dialogue
+	 * permettant de sélectionner un des identifiants. Une nouvelle ligne
+	 * contenant l'identifiant sélectionné est ajoutée au tableau des
+	 * autorisations, et cet identifiant est retiré de la liste (mais pas du
+	 * fichier). Pour reproposer le choix du fichier, il faut ouvrir une
+	 * nouvelle fenêtre d'autorisations.
+	 *
+	 * @param evt non utilisé
+	 */
     private void btnImporterAutorisationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImporterAutorisationActionPerformed
 		if (!identifiantsImportésHistorique) {
 			liste_id_échec = null;
@@ -533,6 +620,19 @@ public class InterfaceBDA extends javax.swing.JFrame {
 		}
     }//GEN-LAST:event_btnImporterAutorisationActionPerformed
 
+	/**
+	 * Ouvre le fichier en paramètre et le lit. Ligne par ligne, les colonnes
+	 * séparées par des tabulations sont extraites. S'il n'y a pas trois
+	 * colonnes à chaque ligne, le fichier n'est pas un fichier d'historique et
+	 * l'objet nul est renvoyé. Sinon, si la deuxième colonne contient le
+	 * mot-clé « ÉCHEC », le contenu de la troisième colonne est ajouté à la
+	 * liste s'il n'y est pas déjà présent.
+	 *
+	 * @param cheminFichier le chemin du fichier à ouvrir
+	 * @return la liste des identifiants extraits, null si le fichier n'est pas
+	 * un fichier d'historique
+	 * @throws FileNotFoundException Si le fichier sélectionné n'est pas trouvé
+	 */
 	ArrayList<String> listeIdentifiantsDepuisHistorique(String cheminFichier) throws FileNotFoundException {
 		ArrayList<String> tableau_id = new ArrayList<>();
 		/* Ajout des données du fichier */
@@ -563,6 +663,15 @@ public class InterfaceBDA extends javax.swing.JFrame {
 		return tableau_id;
 	}
 
+	/**
+	 * Quand la fenêtre d'autorisations est fermée, réinitialise de témoin
+	 * d'importation. Si les données n'ont jamais été enregistrées, propose
+	 * d'enregistrer dans un fichier (en faisant appel à la méthode
+	 * `btnEnregistrerAutorisationsActionPerformed` pour cela). Enfin,
+	 * réinitiale le témoin d'enregistrement et affiche l'accueil.
+	 *
+	 * @param evt non utilisé
+	 */
     private void frameAutorisationsWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_frameAutorisationsWindowClosed
 		/* Réinitialise le dialogue d'importation des identifiants depuis l'historique */
 		identifiantsImportésHistorique = false;
@@ -579,11 +688,18 @@ public class InterfaceBDA extends javax.swing.JFrame {
 		setVisible(true);
     }//GEN-LAST:event_frameAutorisationsWindowClosed
 
+	/**
+	 * Quand la fenêtre de l'historique est fermée, affiche la fenêtre d'accueil
+	 *
+	 * @param evt non utilisé
+	 */
     private void frameHistoriqueWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_frameHistoriqueWindowClosed
 		setVisible(true);
     }//GEN-LAST:event_frameHistoriqueWindowClosed
 
 	/**
+	 * La méthode principale qui est à la source de tout
+	 *
 	 * @param args the command line arguments
 	 */
 	public static void main(String args[]) {
