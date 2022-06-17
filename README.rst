@@ -7,14 +7,29 @@ Application créée pour fournir une interface dans un projet.
 Compilation
 ------------
 
-.. code-block:: shell
-
-	java lib/flatlaf-2.3.jar InterfaceBDA.java # Compile
-	javac -cp lib/flatlaf-2.3.jar:src/ InterfaceBDA # Exécute
-
 Ce programme a été conçu en utilisant Netbeans. Vous avez la possibilité
 d'importer ces fichiers dans Netbeans et d'utiliser la fonctionnalité incluse
-de compilation.
+de compilation. Pour obtenir un jar unique (avec tout inclus, sans
+bibliothèques à côté), faites un clic droit sur le fichier ``build.xml`` dans
+l'onglet **Fichiers** et sélectionnez l'option
+``Run Target > Other Targets > parckage-for-store``.
+
+Si vous avez envie de faire ça à la ligne de commande, exécutez la suivante :
+.. code-block:: shell
+
+	make
+
+Exécution du programme
+-----------------------
+
+Une fois que vous avez créé le ``.jar``, vous pouvez le trouver dans le
+dossier ``store/``. Vous pouvez l'exécuter en l'ouvrant comme pour les autres
+programmes si c'est dans l'habitude de votre système d'exploitation.
+
+Alternativement, vous pouvez utiliser la commande suivante :
+
+.. code-block:: shell
+	java -jar store/configuration-verrou.jar
 
 Dépendances
 ------------
