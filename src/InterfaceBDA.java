@@ -82,15 +82,17 @@ public class InterfaceBDA extends javax.swing.JFrame {
 
         frameAutorisations.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         frameAutorisations.setTitle("Gestion des autorisations");
-        frameAutorisations.setMinimumSize(new java.awt.Dimension(600, 400));
+        frameAutorisations.setMinimumSize(new java.awt.Dimension(630, 400));
         frameAutorisations.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 frameAutorisationsWindowClosed(evt);
             }
         });
 
+        btnEnregistrerAutorisations.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/enregistrer-sous.png"))); // NOI18N
         btnEnregistrerAutorisations.setText("Enregistrer");
         btnEnregistrerAutorisations.setToolTipText("Enregistrer les autorisations dans un fichier");
+        btnEnregistrerAutorisations.setIconTextGap(8);
         btnEnregistrerAutorisations.setMinimumSize(new java.awt.Dimension(105, 30));
         btnEnregistrerAutorisations.setPreferredSize(new java.awt.Dimension(105, 30));
         btnEnregistrerAutorisations.addActionListener(new java.awt.event.ActionListener() {
@@ -99,8 +101,10 @@ public class InterfaceBDA extends javax.swing.JFrame {
             }
         });
 
+        btnAjouterAutorisation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/ajouter.png"))); // NOI18N
         btnAjouterAutorisation.setText("Ajouter");
         btnAjouterAutorisation.setToolTipText("Ajouter une ligne d'autorisation");
+        btnAjouterAutorisation.setIconTextGap(8);
         btnAjouterAutorisation.setMinimumSize(new java.awt.Dimension(105, 30));
         btnAjouterAutorisation.setPreferredSize(new java.awt.Dimension(105, 30));
         btnAjouterAutorisation.addActionListener(new java.awt.event.ActionListener() {
@@ -109,8 +113,10 @@ public class InterfaceBDA extends javax.swing.JFrame {
             }
         });
 
+        btnSupprimerAutorisation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/retirer.png"))); // NOI18N
         btnSupprimerAutorisation.setText("Supprimer");
         btnSupprimerAutorisation.setToolTipText("Supprimer une ligne d'autorisation");
+        btnSupprimerAutorisation.setIconTextGap(8);
         btnSupprimerAutorisation.setMinimumSize(new java.awt.Dimension(105, 30));
         btnSupprimerAutorisation.setPreferredSize(new java.awt.Dimension(105, 30));
         btnSupprimerAutorisation.addActionListener(new java.awt.event.ActionListener() {
@@ -119,8 +125,10 @@ public class InterfaceBDA extends javax.swing.JFrame {
             }
         });
 
+        btnImporterAutorisation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/importer.png"))); // NOI18N
         btnImporterAutorisation.setText("Importer");
         btnImporterAutorisation.setToolTipText("Importer des autorisations depuis un historique");
+        btnImporterAutorisation.setIconTextGap(8);
         btnImporterAutorisation.setMinimumSize(new java.awt.Dimension(105, 30));
         btnImporterAutorisation.setPreferredSize(new java.awt.Dimension(105, 30));
         btnImporterAutorisation.addActionListener(new java.awt.event.ActionListener() {
@@ -157,11 +165,11 @@ public class InterfaceBDA extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(frameAutorisationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAjouterAutorisation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEnregistrerAutorisations, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSupprimerAutorisation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnImporterAutorisation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                    .addComponent(btnEnregistrerAutorisations, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                    .addComponent(btnAjouterAutorisation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSupprimerAutorisation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnImporterAutorisation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         frameAutorisationsLayout.setVerticalGroup(
             frameAutorisationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,7 +191,8 @@ public class InterfaceBDA extends javax.swing.JFrame {
 
         frameHistorique.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         frameHistorique.setTitle("Consulter l'historique");
-        frameHistorique.setMinimumSize(new java.awt.Dimension(600, 400));
+        frameHistorique.setMinimumSize(new java.awt.Dimension(630, 400));
+        frameHistorique.setPreferredSize(new java.awt.Dimension(630, 400));
         frameHistorique.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 frameHistoriqueWindowClosed(evt);
@@ -236,8 +245,10 @@ public class InterfaceBDA extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Configuration du verrou");
-        setMinimumSize(new java.awt.Dimension(600, 400));
+        setMinimumSize(new java.awt.Dimension(630, 400));
+        setPreferredSize(new java.awt.Dimension(630, 400));
 
+        btnCreerListeAuto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/nouveau-document.png"))); // NOI18N
         btnCreerListeAuto.setText("Créer une nouvelle liste");
         btnCreerListeAuto.setToolTipText("Commencer une liste d'autorisations à partir de rien");
         btnCreerListeAuto.setIconTextGap(8);
@@ -249,9 +260,11 @@ public class InterfaceBDA extends javax.swing.JFrame {
             }
         });
 
+        btnOuvrirListeAuto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/ouvrir-document.png"))); // NOI18N
         btnOuvrirListeAuto.setText("Utiliser une liste existante");
         btnOuvrirListeAuto.setToolTipText("Ouvrir une liste d'autorisation et la modifier");
         btnOuvrirListeAuto.setActionCommand("");
+        btnOuvrirListeAuto.setIconTextGap(8);
         btnOuvrirListeAuto.setMinimumSize(new java.awt.Dimension(210, 30));
         btnOuvrirListeAuto.setPreferredSize(new java.awt.Dimension(210, 30));
         btnOuvrirListeAuto.addActionListener(new java.awt.event.ActionListener() {
@@ -266,8 +279,10 @@ public class InterfaceBDA extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Cantarell", 0, 18)); // NOI18N
         jLabel2.setText("Consulter l'historique");
 
+        btnOuvrirHistorique.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/ouvrir-document.png"))); // NOI18N
         btnOuvrirHistorique.setText("Ouvrir un fichier");
         btnOuvrirHistorique.setToolTipText("Ouvrir un fichier d'historique et le consulter");
+        btnOuvrirHistorique.setIconTextGap(8);
         btnOuvrirHistorique.setMinimumSize(new java.awt.Dimension(134, 30));
         btnOuvrirHistorique.setPreferredSize(new java.awt.Dimension(150, 30));
         btnOuvrirHistorique.addActionListener(new java.awt.event.ActionListener() {
@@ -281,19 +296,24 @@ public class InterfaceBDA extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(67, 67, 67)
+                .addGap(66, 66, 66)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(btnCreerListeAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnOuvrirListeAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnOuvrirHistorique, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnCreerListeAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnOuvrirListeAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnOuvrirHistorique, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(81, Short.MAX_VALUE))
+                                .addComponent(jLabel2)
+                                .addGap(300, 300, 300)))
+                        .addGap(0, 61, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabel1)
+                        .addGap(61, 61, 61))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -304,9 +324,9 @@ public class InterfaceBDA extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCreerListeAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnOuvrirListeAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                .addGap(31, 31, 31)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnOuvrirHistorique, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(178, Short.MAX_VALUE))
         );
