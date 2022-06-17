@@ -15,6 +15,7 @@ l'onglet **Fichiers** et sélectionnez l'option
 ``Run Target > Other Targets > parckage-for-store``.
 
 Si vous avez envie de faire ça à la ligne de commande, exécutez la suivante :
+
 .. code-block:: shell
 
 	make
