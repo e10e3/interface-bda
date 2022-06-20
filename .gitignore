@@ -4,6 +4,7 @@
 build/
 nbbuild/
 dist/
+doc/
 nbdist/
 store/
 .nb-gradle/
