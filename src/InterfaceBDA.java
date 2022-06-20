@@ -53,6 +53,13 @@ public class InterfaceBDA extends javax.swing.JFrame {
 		Font policeEnteteTableau = tableAutorisations.getTableHeader().getFont().deriveFont(Font.BOLD);
 		tableAutorisations.getTableHeader().setFont(policeEnteteTableau);
 		tableHistorique.getTableHeader().setFont(policeEnteteTableau);
+		/* Quand le tableau des autorisations est modifié, le témin d'enregistrement est mis à faux */
+		tableAutorisations.getModel().addTableModelListener(new javax.swing.event.TableModelListener() {
+			public void tableChanged(javax.swing.event.TableModelEvent e) {
+				autorisationEnregistrées = false;
+			}
+		});
+
 	}
 
 	/**
@@ -192,7 +199,6 @@ public class InterfaceBDA extends javax.swing.JFrame {
         frameHistorique.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         frameHistorique.setTitle("Consulter l'historique");
         frameHistorique.setMinimumSize(new java.awt.Dimension(630, 400));
-        frameHistorique.setPreferredSize(new java.awt.Dimension(630, 400));
         frameHistorique.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 frameHistoriqueWindowClosed(evt);
@@ -349,7 +355,7 @@ public class InterfaceBDA extends javax.swing.JFrame {
 		frameAutorisations.setVisible(true);
 		setVisible(false);
     }//GEN-LAST:event_btnCreerListeAutoActionPerformed
-	
+
 	/**
 	 * Affiche un sélecteur de fichier, puis appelle
 	 * `remplirTableauAutorisations` pour remplir le tableau des autorisations
@@ -423,9 +429,9 @@ public class InterfaceBDA extends javax.swing.JFrame {
 	/**
 	 * Affiche un sélecteur de fichier, puis appelle `remplirTableauHistorique`
 	 * pour remplir le tableau de l'historique avec le contenu du fichier
-	 * sélectionné. Si le fichier choisi est bien un fichier d'historique (<em>id
-	 * est</em> la méthode auxiliaire renvoie « Vrai »), finit en affichant la
-	 * fenêtre de l'historique et en cachant l’accueil.
+	 * sélectionné. Si le fichier choisi est bien un fichier d'historique
+	 * (<em>id est</em> la méthode auxiliaire renvoie « Vrai »), finit en
+	 * affichant la fenêtre de l'historique et en cachant l’accueil.
 	 *
 	 * @param evt non utilisé
 	 */
@@ -592,10 +598,10 @@ public class InterfaceBDA extends javax.swing.JFrame {
 	 * Affiche un sélecteur de fichiers pour sélectionner un fichier
 	 * d'historique et appelle `listeIdentifiantsDepuisHistorique` pour
 	 * récupérer la liste des identifiants non reconnus. Si les identifiants ont
-	 * bien été récupérés (le tableau renvoyé n'est pas nul, <em>id est</em> le fichier
-	 * sélectionné est bien un fichier d'historique), affiche un dialogue
-	 * permettant de sélectionner un des identifiants. Une nouvelle ligne
-	 * contenant l'identifiant sélectionné est ajoutée au tableau des
+	 * bien été récupérés (le tableau renvoyé n'est pas nul, <em>id est</em> le
+	 * fichier sélectionné est bien un fichier d'historique), affiche un
+	 * dialogue permettant de sélectionner un des identifiants. Une nouvelle
+	 * ligne contenant l'identifiant sélectionné est ajoutée au tableau des
 	 * autorisations, et cet identifiant est retiré de la liste (mais pas du
 	 * fichier). Pour reproposer le choix du fichier, il faut ouvrir une
 	 * nouvelle fenêtre d'autorisations.
