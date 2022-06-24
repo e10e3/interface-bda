@@ -486,7 +486,9 @@ public class InterfaceBDA extends javax.swing.JFrame {
 			ligneLue = lecteur.nextLine();
 			sepChaine = ligneLue.split("\t");
 			if (sepChaine.length == 3) {
-				modèle.addRow(new Object[]{sepChaine[0], sepChaine[1], sepChaine[2]});
+				/* Mise en forme de la date pour la lisibilité */
+				String chaineDate = sepChaine[0].replace("T", "  à  ");
+				modèle.addRow(new Object[]{chaineDate, sepChaine[1], sepChaine[2]});
 			} else {
 				/* Il n'y a pas trois colonnes, ce n'est pas un ficher d'historique */
 				return false;
@@ -532,7 +534,6 @@ public class InterfaceBDA extends javax.swing.JFrame {
 					if (!(identifiantLigne.isBlank() && nomLigne.isBlank())) {
 						/* Si la ligne n'est pas entièrement vide */
 						ligne_actu = identifiantLigne + "\t" + nomLigne + "\r\n";
-						System.out.print(ligne_actu);
 						fichier_destination.write(ligne_actu);
 					}
 				}
@@ -544,7 +545,7 @@ public class InterfaceBDA extends javax.swing.JFrame {
 						"Erreur", JOptionPane.ERROR_MESSAGE);
 			}
 		} else {
-			System.out.println("Aucun fichier choisi");
+			System.err.println("Aucun fichier choisi");
 		}
     }//GEN-LAST:event_btnEnregistrerAutorisationsActionPerformed
 
@@ -638,7 +639,6 @@ public class InterfaceBDA extends javax.swing.JFrame {
 					tableau_id_échec, "");
 			liste_id_échec.remove(identifiantSelectionne);
 			if (identifiantSelectionne != null) {
-				System.out.println(identifiantSelectionne);
 				DefaultTableModel modèle = (DefaultTableModel) tableAutorisations.getModel();
 				modèle.addRow(new Object[]{identifiantSelectionne, ""});
 			}
